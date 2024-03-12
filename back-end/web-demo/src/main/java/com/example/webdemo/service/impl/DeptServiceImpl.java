@@ -43,4 +43,11 @@ public class DeptServiceImpl implements DeptService {
             deptLogService.insert(deptLog);
         }
     }
+
+    @Override
+    public void save(Dept dept) {
+        dept.setCreateTime(LocalDateTime.now());
+        dept.setUpdateTime(LocalDateTime.now());
+        deptMapper.insert(dept);
+    }
 }

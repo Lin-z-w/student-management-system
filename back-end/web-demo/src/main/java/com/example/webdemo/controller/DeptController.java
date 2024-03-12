@@ -1,5 +1,6 @@
 package com.example.webdemo.controller;
 
+import com.example.webdemo.anno.Log;
 import com.example.webdemo.pojo.Dept;
 import com.example.webdemo.pojo.Result;
 import com.example.webdemo.service.DeptService;
@@ -27,10 +28,18 @@ public class DeptController {
      * delete dept
      * @return Result
      */
+    @Log
     @DeleteMapping("/depts/{id}")
     public Result deleteById(@PathVariable Integer id) {
         log.info("delete dept by id : {}", id);
         deptService.deleteById(id);
+        return Result.success();
+    }
+
+    @Log
+    @PostMapping("/depts")
+    public Result save(@RequestBody Dept dept) {
+        deptService.save(dept);
         return Result.success();
     }
 }

@@ -1,5 +1,6 @@
 package com.example.webdemo.controller;
 
+import com.example.webdemo.anno.Log;
 import com.example.webdemo.pojo.Emp;
 import com.example.webdemo.pojo.PageBean;
 import com.example.webdemo.pojo.Result;
@@ -32,6 +33,7 @@ public class EmpController {
         return Result.success(pageBean);
     }
 
+    @Log
     @DeleteMapping("/{ids}")
     public Result deleteByIds(@PathVariable List<Integer> ids) {
         log.info("delete by ids : {}", ids);
@@ -39,6 +41,7 @@ public class EmpController {
         return Result.success();
     }
 
+    @Log
     @PostMapping
     public Result save(@RequestBody Emp emp) {
         log.info("save emp : {}", emp);
@@ -53,6 +56,7 @@ public class EmpController {
         return Result.success(emp);
     }
 
+    @Log
     @PutMapping
     public Result update(@RequestBody Emp emp) {
         log.info("update emp info : {}", emp);
