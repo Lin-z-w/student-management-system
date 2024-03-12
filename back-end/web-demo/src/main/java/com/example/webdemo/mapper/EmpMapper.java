@@ -1,6 +1,7 @@
 package com.example.webdemo.mapper;
 
 import com.example.webdemo.pojo.Emp;
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
@@ -14,7 +15,7 @@ public interface EmpMapper {
     // @Select("select * from emp")
     public List<Emp> list(String name, Short gender, LocalDate begin, LocalDate end);
 
-    public void delete(List<Integer> ids);
+    public void deleteByIds(List<Integer> ids);
 
     @Insert("insert into emp(username, password, name, gender, image, job, entrydate, dept_id, create_time, update_time) " +
             "values (#{username}, #{password}, #{name}, #{gender}, #{image}, #{job}, #{entrydate}, #{deptId}, #{createTime}, #{updateTime})")
@@ -27,4 +28,7 @@ public interface EmpMapper {
 
     @Select("select * from emp where username = #{username} and password = #{password}")
     Emp getByUserNameAndPassword(Emp emp);
+
+    @Delete("delete from emp where dept_id = #{deptId}")
+    void deleteByDeptId(Integer deptId);
 }
